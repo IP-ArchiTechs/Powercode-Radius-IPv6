@@ -22,9 +22,12 @@ class CreateSubnetAction
            foreach ($subnetDTO->prefix->moveTo(56) as $prefix) {
                $subscribers[] = [
                    'subnet_id' => $subnet->id,
-                   'prefix' => $prefix->getCIDR()
+                   'prefix' => $prefix->getCIDR(),
+                   'created_at' => now()->toDateTimeString()
                ];
            }
+
+           array_shift($subscribers);
 
            foreach (array_chunk($subscribers, 3000) as $s) {
                Subscriber::insert($s);
