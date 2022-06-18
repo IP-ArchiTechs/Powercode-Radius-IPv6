@@ -8,6 +8,7 @@ class RADIUSUser extends Model
 {
     protected $connection = 'radius';
     protected $table = 'radcheck';
+    protected $fillable = ['username'];
 
     public function attributes() {
         return $this->hasMany(RADIUSAttribute::class, 'username', 'username');

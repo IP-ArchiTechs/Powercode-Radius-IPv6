@@ -2,19 +2,27 @@
 
 namespace App\Domain\IPABridge\Actions;
 
+use App\Domain\IPABridge\Exceptions\SubnetExhaustedException;
 use App\Domain\IPABridge\Models\Subscriber;
 use App\Domain\Powercode\Models\Equipment;
 
 class SyncSubscribersFromPowercodeAction
 {
-    public function __invoke() {
+    /**
+     * @throws SubnetExhaustedException
+     */
+    public function __invoke(): void
+    {
         $equipments = Equipment::all();
 
         foreach ($equipments as $equipment) {
 
-            if ($equipment->mac == "00:00:00:00:00:0A") { continue; }
+            $subscriber = Subscriber::where('subnet_id', 3)->where('mac', null)->first();
 
-            $subscriber = Subscriber::where('subnet_id', 1)->where('mac', null)->first();
+            if (!$subscriber) {
+                throw new SubnetExhaustedException;
+            }
+
             $subscriber->fill([
                 'subnet_id' => 1,
                 'pc_equipment_id' => $equipment->pc_equipment_id,

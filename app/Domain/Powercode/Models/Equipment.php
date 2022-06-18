@@ -61,6 +61,8 @@ class Equipment
             return Equipment::fromRow($equipment);
         });
 
-        return $equipmentCollection;
+        return $equipmentCollection->reject(function ($equipment) {
+           return $equipment->mac == '00:00:00:00:00:0A';
+        });
     }
 }

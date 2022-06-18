@@ -24,7 +24,7 @@ class CreateRadreplyTable extends Migration
             $table->timestamps();
 
             $table->unique(['username', 'attribute']);
-            $table->foreign('username')->references('username')->on('radcheck');
+            $table->foreign('username')->references('username')->on('radcheck')->onDelete('CASCADE');
         });
     }
 
