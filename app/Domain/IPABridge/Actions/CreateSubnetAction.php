@@ -9,7 +9,11 @@ use Illuminate\Support\Facades\DB;
 
 class CreateSubnetAction
 {
-    public function __invoke(SubnetDTO $subnetDTO) {
+    /**
+     * @throws \Throwable
+     */
+    public function __invoke(SubnetDTO $subnetDTO): void
+    {
 
         DB::transaction(function () use ($subnetDTO) {
 

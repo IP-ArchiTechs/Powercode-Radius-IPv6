@@ -1,64 +1,74 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+![IP ArchiTechs Logo](docs/images/IPA-2020-Full-Filled.svg)
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+IP ArchiTechs designs, builds, and troubleshoots IPv4 and IPv6 networks for internet service providers, enterprise, and datacenter networks.
 
-## About Laravel
+Our global consulting team has helped hundreds of network solve scale and management challenges as they grow their network and customer base.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Clients call on IP ArchiTechs to perform network audits, analysis, design expansions, migrate architectures, and more.  We solve business goals and reduce network CAPEX by being vendor and manufacturer agnostic.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Call +1 (855) 645-7684 or email consulting@iparchitechs.com to see how we can help your network and operations thrive.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+# Project Description
+This application is aimed for wireless and fiber internet service providers that are powered by Powercode.
 
-## Learning Laravel
+This application enabled networks to provision IPv6 to customers with predetermined addresses and prefixes using DHCPv6-PD.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+This is accomplished using RADIUS as a backend for DHCPv6 and is quite simple to deploy.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Background
+We've assisted hundreds of networks in IPv6 deployment and solve the unique challenges in each organization.  Over those projects, we've developed many tools, utilities, and other enabling material specific to our individual client.
 
-## Laravel Sponsors
+This IPA Bridge for Powercode is released open source to help all Powercode customers enable IPv6 in their network and for their subscribers without compromising on standards or the pre-deterministic nature of IPv4 that you are used to.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+## High Level Diagram
+![High Level Diagram](docs/images/High-Level-Diagram.jpeg)
 
-### Premium Partners
+## Future
+This tool currently is focused on enabling IPv6 for Powercode networks.  However, it has been built to provide other benefits in the future.  Such as Queue Tree based shaping in MikroTik, an alternative to MikroTik BMU capabilities that could be more robust than native integration, netElastic or other BNG support.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+# Requirements
 
-## Contributing
+## Powercode
+This tool is intended to be used with Powercode.  We may support other platforms in the future.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## VM
+A small server or VM is required to run this application.
 
-## Code of Conduct
+- Ubuntu 20.04 LTS Server
+- 2G RAM
+- 15G Disk
+- 2 CPU Cores (More is great, but beyond 4 would be a waste.)
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Network
+Your network must be IPv6 ready.  This application only handles the subscriber CPE, home router provisioning of IPv6 delegated prefixes.
 
-## Security Vulnerabilities
+If you need assistance with planning and executing your IPv6 rollout across your infrastructure, protocol support, dynamic routing, or more, call +1 (855) 645-7684 or email consulting@iparchitechs.com.  Our network consulting firm would be delighted to engage with you in deploying IPv6 correctly.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+# Operation
+Documentation is currently light as we're still working on cleaning up and optimizing functionality.  However, at a high level, it goes something like this;
+1. On a new VM, install this application and freeRADIUS.
+2. Configure this application to hit a local MySQL database, freeRADIUS MySQL database, and the MySQL server on your Powercode server.
+3. Create an IPv6 subnet in this application, usually a /40 based on most designs for WISPs.
+4. Map the Powercode Address Ranges that will be handled by that Subnet you created.
+5. Sync
+6. Configure tower MikroTiks or VPLS termination MikroTiks for DHCPv6, using RADIUS.
 
-## License
+*Absolutely nothing needs to be done with **Powercode**.  This application does not touch or interfere with Powercode in any way.  It is also important to note that Powercode may refuse support in operation of this application as this is a third party tool.  For all support, please contact IP ArchiTechs (consulting@iparchitechs.com).*
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+# Support
+While the application is open source, for best results, please contact IP ArchiTechs to plan your deployment with best practices.
+
++1 (855) 645-7684 or email consulting@iparchitechs.com
+
+# TODO
+- Documentation
+- Powercode Webhook Support For Incremental Changes
+- Optimize Sync actions to only process changes.
+- Error Handling
+- A Simple Web GUI
+- Preseem Integration
+- Saisei Integration
+- Logging Of Changes and Assignments
+- Logging of RADIUS requests for DHCPv6
+
+Ongoing: Remove and refactor laziness out of the code.

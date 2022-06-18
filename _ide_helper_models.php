@@ -12,12 +12,26 @@
 
 namespace App\Domain\IPABridge\Models{
 /**
+ * App\Domain\IPABridge\Models\PowercodeAddressRange
+ *
+ * @property-read \App\Domain\IPABridge\Models\Subnet|null $subnet
+ * @method static \Illuminate\Database\Eloquent\Builder|PowercodeAddressRange newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|PowercodeAddressRange newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|PowercodeAddressRange query()
+ */
+	class PowercodeAddressRange extends \Eloquent {}
+}
+
+namespace App\Domain\IPABridge\Models{
+/**
  * App\Domain\IPABridge\Models\Subnet
  *
  * @property int $id
  * @property string $prefix
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Domain\IPABridge\Models\PowercodeAddressRange[] $powercodeAddressRanges
+ * @property-read int|null $powercode_address_ranges_count
  * @method static \Illuminate\Database\Eloquent\Builder|Subnet newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Subnet newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Subnet query()

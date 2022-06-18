@@ -1,10 +1,11 @@
 <?php
 
+use App\Domain\IPABridge\Models\Subnet;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUsersTable extends Migration
+class CreatePowercodeAddressRangesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +14,12 @@ class CreateUsersTable extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+        Schema::create('powercode_address_ranges', function (Blueprint $table) {
+            $table->unsignedBigInteger('pc_address_range_id')->unique();
+            $table->foreignIdFor(Subnet::class);
             $table->timestamps();
+
+            $table->primary('pc_address_range_id');
         });
     }
 
@@ -31,6 +30,6 @@ class CreateUsersTable extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('powercode_address_ranges');
     }
 }
